@@ -21,10 +21,14 @@ app.config['SECRET_KEY'] = 'mysecret'
 ### DATABASE SETUPS ############
 ###############################
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# basedir = os.path.abspath(os.path.dirname(__file__))
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+# postgres://social_media_post_0wqr_user:haXiyceEfFNfAluFQfr3nZpHZ73d0dXN@dpg-chq85s67avjb90lv3v10-a.singapore-postgres.render.com/social_media_post_0wqr
 
 db = SQLAlchemy(app)
 Migrate(app,db)
